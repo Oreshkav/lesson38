@@ -9,20 +9,21 @@ public class Pet {
   //"дата рождения" (тип String),
   //вес (тип double);
   //конструктор, сеттеры, геттеры;
-
-  private EnumKind kind;
-  String name;
-  String birthday = null;
-  double weight = 0;
-
   //статический метод для создания животного при прочтении данных из строки
   // "dog,кличка", "cat,кличка,вес", "turtle,кличка,вес,дата рождения".
 
-  public Pet(EnumKind kind, String name, String birthday, double wegth) {
+  final private static char SEP = ',';
+
+  private EnumKind kind;
+  private String name;
+  private String birthday = null;
+  private double weight = 0;
+
+  public Pet(EnumKind kind, String name, String birthday, double weigth) {
     this.kind = kind;
     this.name = name;
     this.birthday = birthday;
-    this.weight = weight;
+    this.weight = weigth;
   }
 
   public Pet(EnumKind kind, String name, String birthday) {
@@ -64,8 +65,33 @@ public class Pet {
     return birthday;
   }
 
-  public void getWeigth() {
+  public double getWeigth() {
     return weight;
+  }
+
+  public static Pet parsePet(String line) {
+
+    int sepIndex = line.indexOf(SEP);
+    if (SEP == -1) {
+      return null;
+    }
+
+    EnumKind kind = EnumKind.valueOf(line.substring(0, sepIndex));
+
+    String subLine = line.substring(sepIndex + 1);
+    sepIndex = subLine.indexOf(SEP);
+    String name = subLine.substring(0, sepIndex);
+
+    subLine = line.substring(sepIndex + 1);
+    sepIndex = subLine.indexOf(SEP);
+    String bithday = subLine.substring(0, sepIndex);
+
+    subLine = line.substring(sepIndex + 1);
+    sepIndex = subLine.indexOf(SEP);
+    double weigth = Double.parseDouble(subLine.substring(0, sepIndex));
+
+    return new Pet(kind, name, bithday, weigth);
+
   }
 }
 

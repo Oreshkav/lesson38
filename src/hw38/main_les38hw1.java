@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class les38hw1 {
+public class main_les38hw1 {
   //Задача 1
   //Создать класс Pet (домашнее животное). В классе должны быть:
   //enum Kind для вида животного (DOG, CAT, OTHER);

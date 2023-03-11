@@ -5,5 +5,6 @@ public enum EnumKind {
   DOG,
   CAT,
   OTHER,
+
 }
 

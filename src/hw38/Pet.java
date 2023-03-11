@@ -24,6 +24,9 @@ public class Pet {
   //статический метод для создания животного при прочтении данных из строки
   // "dog,кличка", "cat,кличка,вес", "turtle,кличка,вес,дата рождения".
 
-public static void addAnimal(){}
+public static void addAnimal(){
+
+}
+
 
 }

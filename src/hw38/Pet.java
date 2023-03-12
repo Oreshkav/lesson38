@@ -72,26 +72,74 @@ public class Pet {
   public static Pet parsePet(String line) {
 
     int sepIndex = line.indexOf(SEP);
-    if (SEP == -1) {
-      return null;
+    if (sepIndex == -1) {
+//      return null;
+    }
+    int counterSep = 0;
+    while (sepIndex != -1 ) {
+      String subLine = line.substring(sepIndex + 1);
+      sepIndex = subLine.indexOf(SEP);
+      ++counterSep;
+    }
+    sepIndex = line.indexOf(SEP);
+
+    if (counterSep == 1) {
+      EnumKind kind = EnumKind.valueOf(line.substring(0, sepIndex).toUpperCase());
+
+      String name = line.substring(sepIndex + 1);
+//      String subLine = line.substring(sepIndex + 1);
+//      sepIndex = subLine.indexOf(SEP);
+//      String name = subLine.substring(0, sepIndex);
+
+      Pet pet = new Pet(kind, name);
+      return pet;
     }
 
-    EnumKind kind = EnumKind.valueOf(line.substring(0, sepIndex));
+    if (counterSep == 2) {
+      EnumKind kind = EnumKind.valueOf(line.substring(0, sepIndex).toUpperCase());
 
-    String subLine = line.substring(sepIndex + 1);
-    sepIndex = subLine.indexOf(SEP);
-    String name = subLine.substring(0, sepIndex);
+      String subLine = line.substring(sepIndex + 1);
+      sepIndex = subLine.indexOf(SEP);
+      String name = subLine;
 
-    subLine = line.substring(sepIndex + 1);
-    sepIndex = subLine.indexOf(SEP);
-    String bithday = subLine.substring(0, sepIndex);
+      subLine = line.substring(sepIndex + 1);
+//      sepIndex = subLine.indexOf(SEP);
+      String bithday = subLine.substring(0, sepIndex);
 
-    subLine = line.substring(sepIndex + 1);
-    sepIndex = subLine.indexOf(SEP);
-    double weigth = Double.parseDouble(subLine.substring(0, sepIndex));
+      Pet pet = new Pet(kind, name, bithday, 0);
+      return pet;
+    }
 
-    return new Pet(kind, name, bithday, weigth);
+    if (counterSep == 3) {
+      EnumKind kind = EnumKind.valueOf(line.substring(0, sepIndex).toUpperCase());
 
+      String subLine = line.substring(sepIndex + 1);
+      sepIndex = subLine.indexOf(SEP);
+      String name = subLine.substring(0, sepIndex);
+
+      subLine = line.substring(sepIndex + 1);
+      sepIndex = subLine.indexOf(SEP);
+      String bithday = subLine.substring(0, sepIndex);
+
+      subLine = line.substring(sepIndex + 1);
+//      sepIndex = subLine.indexOf(SEP);
+      double weigth = Double.parseDouble(subLine);
+      Pet pet = new Pet(kind, name, bithday, weigth);
+      return pet;
+    }
+    return null;
+
+
+  }
+
+  @Override
+  public String toString() {
+    return "Pet{" +
+        "kind=" + kind +
+        ", name='" + name + '\'' +
+        ", birthday='" + birthday + '\'' +
+        ", weight=" + weight +
+        '}';
   }
 }
 

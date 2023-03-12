@@ -22,9 +22,14 @@ public class main_les38hw1 {
   //Формат входных данных: количество строк с записями о домашних животных,
   // затем сами записи в описанном формате.
   public static void main(String[] args) throws IOException {
+
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+    int quantity = Integer.parseInt(br.readLine());
 
+    String line = br.readLine();
+    Pet pets = Pet.parsePet(line);
 
+    System.out.println(pets.toString());
   }
 }

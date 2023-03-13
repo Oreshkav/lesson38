@@ -26,10 +26,12 @@ public class main_les38hw1 {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     int quantity = Integer.parseInt(br.readLine());
+    while (quantity > 0) {
 
-    String line = br.readLine();
-    Pet pets = Pet.parsePet(line);
-
-    System.out.println(pets.toString());
+      String line = br.readLine();
+      Pet pets = Pet.parsePet(line);
+      System.out.println(pets.toString());
+      --quantity;
+    }
   }
 }
